@@ -6,7 +6,7 @@
 /*   By: anhuang <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 14:17:56 by anhuang           #+#    #+#             */
-/*   Updated: 2018/01/16 14:18:03 by anhuang          ###   ########.fr       */
+/*   Updated: 2018/03/05 10:34:25 by anhuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <wchar.h>
 # include <limits.h>
 # include <inttypes.h>
-# include "../libft/libft.h"
+# include "libft.h"
 # define BS 8
 # define ABS(Value) ((Value < 0) ? -(Value) : (Value))
 
