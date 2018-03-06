@@ -6,6 +6,7 @@ SRC_NAME = checker.c \
 
 SRC_NAME2 = push_swap.c \
 			init.c \
+			operate.c \
 
 OBJ_PATH2 = obj2
 OBJ_PATH = obj

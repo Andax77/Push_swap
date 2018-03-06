@@ -12,14 +12,30 @@
 
 #include "push_swap.h"
 
-void	check_pile(char **str)
+void	check_double(char **str, int a)
+{
+	int i;
+
+	i = 1;
+	while (str[a])
+	{
+		while (str[a + i])
+		{
+			if (ft_atoi(str[a]) == ft_atoi(str[a + i]))
+				ft_error("Error\n");
+			i++;
+		}
+		i = 1;
+		a++;
+	}
+}
+
+void	check_pile(char **str, int a)
 {
 	int		i;
 	long	nbr;
 	int		check;
-	int		a;
 
-	a = 1;
 	while (str[a] && !(check = 0))
 	{
 		i = 0;
@@ -41,7 +57,7 @@ void	check_pile(char **str)
 	}
 }
 
-void	add_pile(t_pile **begin, int value)
+void	add_pile(t_pile **begin, int value, int end)
 {
 	static	t_pile	*last;
 	t_pile			*new;
@@ -55,7 +71,7 @@ void	add_pile(t_pile **begin, int value)
 		*begin = new;
 		last = *begin;
 	}
-	else
+	else if (end)
 	{
 		last->next = new;
 		last = new;
@@ -80,10 +96,11 @@ void	init_pile(char *argv[], t_pile **begin, int a)
 	int		i;
 
 	i = 0;
-	check_pile(argv);
+	check_pile(argv, a);
+	check_double(argv, a);
 	while (argv[a])
 	{
-		add_pile(begin, ft_atoi(argv[a]));
+		add_pile(begin, ft_atoi(argv[a]), 1);
 		a++;
 	}
 }
