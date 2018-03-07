@@ -16,7 +16,7 @@ void	ft_sa(t_pile **pile)
 {
 	int data;
 
-	if (!(*pile)->nbr || (*pile)->next->nbr)
+	if (!(*pile) || !((*pile)->next))
 		return ;
 	data = (*pile)->nbr;
 	(*pile)->nbr = (*pile)->next->nbr;
@@ -27,7 +27,7 @@ void	ft_sb(t_pile **pile2)
 {
 	int data;
 
-	if (!(*pile2)->nbr || (*pile2)->next->nbr)
+	if (!(*pile2) || !((*pile2)->next))
 		return ;
 	data = (*pile2)->nbr;
 	(*pile2)->nbr = (*pile2)->next->nbr;
@@ -36,8 +36,7 @@ void	ft_sb(t_pile **pile2)
 
 void	ft_ss(t_pile **pile, t_pile **pile2)
 {
-	if (!(*pile)->nbr || (*pile)->next->nbr ||
-		!(*pile2)->nbr || (*pile2)->next->nbr)
+	if (!(*pile) || !(*pile)->next || !(*pile2) || !(*pile2)->next)
 		return ;
 	ft_sa(pile);
 	ft_sb(pile2);
@@ -50,7 +49,7 @@ void	ft_pa(t_pile **pile, t_pile **pile2)
 	if (!*pile2)
 		return ;
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
-		ft_error("Error\n");
+		ft_error("Malloc Error\n");
 	new->nbr = (*pile2)->nbr;
 	new->next = *pile;
 	*pile = new;
@@ -66,7 +65,7 @@ void	ft_pb(t_pile **pile, t_pile **pile2)
 	if (!*pile)
 		return ;
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
-		ft_error("Error\n");
+		ft_error("Malloc Error\n");
 	new->nbr = (*pile)->nbr;
 	free(*pile);
 	*pile = (*pile)->next;
@@ -74,6 +73,7 @@ void	ft_pb(t_pile **pile, t_pile **pile2)
 	{
 		*pile2 = new;
 		last = *pile2;
+		(*pile2)->next = NULL;
 	}
 	else
 	{

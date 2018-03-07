@@ -3,10 +3,16 @@ NAME2 = push_swap
 SRC_PATH = src
 SRC_NAME = checker.c \
 			init.c \
+			operate.c \
+			operate2.c \
+			operate3.c \
 
 SRC_NAME2 = push_swap.c \
 			init.c \
 			operate.c \
+			operate2.c \
+			operate3.c \
+			algo.c
 
 OBJ_PATH2 = obj2
 OBJ_PATH = obj

@@ -57,7 +57,7 @@ void	check_pile(char **str, int a)
 	}
 }
 
-void	add_pile(t_pile **begin, int value, int end)
+void	add_pile(t_pile **begin, int value)
 {
 	static	t_pile	*last;
 	t_pile			*new;
@@ -71,7 +71,7 @@ void	add_pile(t_pile **begin, int value, int end)
 		*begin = new;
 		last = *begin;
 	}
-	else if (end)
+	else
 	{
 		last->next = new;
 		last = new;
@@ -100,7 +100,7 @@ void	init_pile(char *argv[], t_pile **begin, int a)
 	check_double(argv, a);
 	while (argv[a])
 	{
-		add_pile(begin, ft_atoi(argv[a]), 1);
+		add_pile(begin, ft_atoi(argv[a]));
 		a++;
 	}
 }
