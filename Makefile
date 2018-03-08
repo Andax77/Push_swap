@@ -1,5 +1,7 @@
 NAME = checker
 NAME2 = push_swap
+GREP = grep "Error"
+INC_PATH = includes
 SRC_PATH = src
 SRC_NAME = checker.c \
 			init.c \
@@ -12,13 +14,15 @@ SRC_NAME2 = push_swap.c \
 			operate.c \
 			operate2.c \
 			operate3.c \
-			algo.c
+			algo.c \
+			algo2.c \
+			algo3.c
 
 OBJ_PATH2 = obj2
 OBJ_PATH = obj
 LDFLAGS = -L libft/ -lft
-CFLAGS = -I includes -I libft
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -I includes -I libft
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -f
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
@@ -55,22 +59,25 @@ obj2/%.o: src/%.c
 
 clean:
 	@make -C libft clean
-	$(RM) $(OBJ)
-	$(RM) $(OBJ2)
+	@$(RM) $(OBJ)
+	@$(RM) $(OBJ2)
 	@rm -rf $(OBJ_PATH) 2> /dev/null || true
 	@rm -rf $(OBJ_PATH2) 2> /dev/null || true
-	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Clean complete"
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Push_Swap Cleaned"
 
 fclean: clean
 	@make -C libft fclean
-	$(RM) $(NAME)
-	$(RM) $(NAME2)
-	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Fclean complete"
+	@$(RM) $(NAME)
+	@$(RM) $(NAME2)
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Push_Swap Cleaned"
 
 re: fclean all
 
 norme:
-	norminette $(SRC)
-	norminette $(INC_PATH)*.h
+	@norminette src/*c >> norme
+	@norminette $(INC_PATH) >> norme
+	@grep -B 1 "Error" norme
+	@rm norme
+	@printf '\033[32m[ ✔ ] %s\n\033[0m' "All is Normed"
 
 .PHONY: all, clean, fclean, re, norme

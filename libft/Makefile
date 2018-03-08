@@ -109,31 +109,34 @@ FLAG = -Wall -Werror -Wextra
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo "[=================]"
-	@echo "|     succes !    |"
-	@echo "|     libft.a     |"
-	@echo "|   was summoned  |"
-	@echo "[=================]"
+	@ar rc $@ $^
+	@ranlib $@
+	@printf '\033[32m[=================] %s\n\033[0m'
+	@printf '\033[32m|     Success !   | %s\n\033[0m'
+	@printf '\033[32m|     libft.a     | %s\n\033[0m'
+	@printf '\033[32m|   was summoned  | %s\n\033[0m'
+	@printf '\033[32m[=================] %s\n\033[0m'
 
 %.o: %.c
-	gcc $(FLAG) -c $< -o $@
+	@gcc $(FLAG) -c $^
+	@printf '\033[35m[ ✔ ] %s\n\033[0m' "$<"
 
 clean:
 	@$(DEL) $(OBJ)
-	@echo "[=================]"
-	@echo "|     succes !    |"
-	@echo "|     XXXXX.o     |"
-	@echo "|  was destroyed  |"
-	@echo "[=================]"
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Libft Clean"
+	@printf '\033[31m[=================] %s\n\033[0m'
+	@printf '\033[31m|     Success !   | %s\n\033[0m'
+	@printf '\033[31m|   libft.a has   | %s\n\033[0m'
+	@printf '\033[31m|  been cleaned ! | %s\n\033[0m'
+	@printf '\033[31m[=================] %s\n\033[0m'
 
 fclean: clean
-	$(DEL) $(NAME)
-	@echo "[=================]"
-	@echo "|     succes !    |"
-	@echo "|     libft.a     |"
-	@echo "|  was destroyed  |"
-	@echo "[=================]"
+	@$(DEL) $(NAME)
+	@printf '\033[31m[ ✔ ] %s\n\033[0m' "Libft Fclean"
+	@printf '\033[31m[=================] %s\n\033[0m'
+	@printf '\033[31m|     Success !   | %s\n\033[0m'
+	@printf '\033[31m|     libft.a     | %s\n\033[0m'
+	@printf '\033[31m|  was destroyed !| %s\n\033[0m'
+	@printf '\033[31m[=================] %s\n\033[0m'
 
 re: fclean all

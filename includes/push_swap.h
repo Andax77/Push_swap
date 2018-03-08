@@ -31,7 +31,11 @@ void			check_pile(char **str, int a);
 void			check_double(char **str, int a);
 int				ft_rmtake_pile(t_pile *begin);
 void			ft_algo(t_pile **pile, t_pile **pile2, int argc);
+void			ft_algo2(t_pile **pile, t_pile **pile2, int argc);
+void			ft_algo3(t_pile **pile, int argc);
 int				end_pile(t_pile *pile);
+int				ft_check_sort(t_pile **pile);
+
 
 void			ft_sa(t_pile **begin);
 void			ft_sb(t_pile **pile2);

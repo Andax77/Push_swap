@@ -24,29 +24,27 @@ int		check_pile2(t_pile **pile2)
 	int i;
 
 	i = 0;
-	if ((*pile2)->nbr < end_pile(*pile2) && ++i)
+	if ((*pile2)->nbr < end_pile(*pile2) &&  ++i)
 		ft_rb(pile2);
-	if ((*pile2)->nbr > (*pile2)->next->nbr && ++i)
-		ft_sa(pile2);
+	if ((*pile2)->nbr < (*pile2)->next->nbr && ++i)
+		ft_sb(pile2);
 	return (i);
 }
 
 void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 {
-	int i;
-	int a;
+	int	i;
+	int	a;
 
-	a = 1;
+	a = 0;
 	i = 0;
-	printf("%d < %d\n",(*pile)->nbr, end_pile(*pile));
-	while (a != 10)
+	while (a != argc)
 	{
-		ft_affichage(*pile);
 		if (*pile2 && (*pile2)->next)
 			i += check_pile2(pile2);
-		if (*pile2)
-			ft_affichage(*pile2);
-		printf("Stop ? Argc %d < %d\n", a, argc);
+			ft_affichage(*pile);
+			if (*pile2)
+				ft_affichage(*pile2);
 		if (((*pile)->nbr < (*pile)->next->nbr) && ((*pile)->nbr < end_pile(*pile))
 			&& ((*pile)->next->nbr < end_pile(*pile)) && ++i)
 			ft_pb(pile, pile2);
@@ -54,7 +52,7 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 			ft_sa(pile);
 		while ((*pile)->nbr > end_pile(*pile) && ++i)
 			ft_rra(pile);
-		while ((*pile)->next->nbr > end_pile(*pile))
+		if ((*pile)->next->nbr > end_pile(*pile))
 		{
 			i += 2;
 			ft_rra(pile);
@@ -66,4 +64,5 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 	while (*pile2 && ++i)
 		ft_pa(pile, pile2);
 	printf("Instructions : %d\n", i);
+//Enlever les i pour Instructions
 }

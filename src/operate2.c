@@ -12,36 +12,46 @@
 
 #include "push_swap.h"
 
-void	ft_ra(t_pile **pile)
+void		ft_ra(t_pile **pile)
 {
-	int tmp;
+	int		tmp;
+	t_pile	*new;
+	t_pile	*fre;
 
 	if (!*pile || !(*pile)->next)
 		return ;
 	tmp = (*pile)->nbr;
-	free(*pile);
+	fre = *pile;
 	*pile = (*pile)->next;
-	add_pile(pile, tmp);
+	free(fre);
+	new = *pile;
+	while (new->next)
+		new = new->next;
+	if (!(new->next = (t_pile*)malloc(sizeof(t_pile))))
+		ft_error("Malloc Error\n");
+	new->next->nbr = tmp;
+	new->next->next = NULL;
 }
 
-void	ft_rb(t_pile **pile2)
+void		ft_rb(t_pile **pile2)
 {
 	int		tmp;
 	t_pile	*new;
+	t_pile	*fre;
 
 	if (!*pile2 || !(*pile2)->next)
 		return ;
-	new = *pile2;
 	tmp = (*pile2)->nbr;
-	free(*pile2);
+	fre = *pile2;
 	*pile2 = (*pile2)->next;
-	while (new)
+	free(fre);
+	new = *pile2;
+	while (new->next)
 		new = new->next;
-	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
-		ft_error("Error\n");
-	new->nbr = tmp;
-	new->next = NULL;
-	ft_affichage(*pile2);
+	if (!(new->next = (t_pile*)malloc(sizeof(t_pile))))
+		ft_error("Malloc Error\n");
+	new->next->nbr = tmp;
+	new->next->next = NULL;
 }
 
 void	ft_rr(t_pile **pile, t_pile **pile2)

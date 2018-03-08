@@ -24,10 +24,13 @@ void	ft_affichage(t_pile *lst)
 
 void	ft_clear(t_pile *lst)
 {
+	t_pile *tmp;
+
 	while (lst)
 	{
+		tmp = lst;
 		lst = lst->next;
-		free(lst);
+		free(tmp);
 	}
 }
 
@@ -44,14 +47,8 @@ int		main(int argc, char *argv[])
 	else
 		init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
 	ft_affichage(pile);
-	ft_pb(&pile, &pile2);
-	ft_pb(&pile, &pile2);
-	ft_pb(&pile, &pile2);
-	ft_affichage(pile2);
-	ft_rrb(&pile2);
-	ft_affichage(pile2);
-	// ft_algo(&pile, &pile2, argc);
-	// ft_affichage(pile);
+	ft_algo2(&pile, &pile2, argc);
+	ft_affichage(pile);
 	// if (pile2)
 	// 	ft_affichage(pile2);
 	ft_clear(pile);
