@@ -12,57 +12,91 @@
 
 #include "push_swap.h"
 
-int			ft_check_sort(t_pile **pile)
-{
-	while (*pile)
-	{
-		if ((*pile)->nbr > (*pile)->next->nbr)
-			return (0);
-		*pile = (*pile)->next;
-	}
-	return (1);
-}
-
-void		ft_count_sort(t_pile *pile, int *i)
+int			ft_check_sort(t_pile *pile)
 {
 	t_pile	*tmp;
 
 	tmp = pile;
-	while (tmp->next->next)
+	while (tmp->next)
 	{
 		if (tmp->nbr > tmp->next->nbr)
-			return ;
-		(*i)++;
+			return (0);
 		tmp = tmp->next;
 	}
+	return (1);
 }
 
-// void		ft_go_sort(t_pile **pile, int i, int argc)
-// {
-// 	int		nbr;
-// 	t_pile	*tmp;
-//
-// 	tmp = *pile;
-// 	while (i != 0)
-//
-// }
-
-void		ft_algo3(t_pile **pile, int argc)
+int			ft_check_sort2(t_pile *pile2)
 {
 	t_pile	*tmp;
-	// t_pile	*new;
-	int		i;
 
-	while (!ft_check_sort(pile) && !(i = 0))
+	tmp = pile2;
+	while (tmp->next)
 	{
-		argc--;
-		tmp = *pile;
-		while (tmp)
-		{
-			ft_count_sort(tmp, &i);
-			// ft_go_sort(&tmp, i, argc);
-			tmp = tmp->next;
-		}
-		ft_affichage(*pile);
+		if (tmp->nbr < tmp->next->nbr)
+			return (0);
+		tmp = tmp->next;
 	}
+	return (1);
+}
+
+void		ft_separate_pile(t_pile **pile, t_pile **pile2, int med, int *a)
+{
+	while (ft_big_num(*pile) > med)
+	{
+		while ((*pile)->nbr > med && ++(*a))
+			ft_pb(pile, pile2);
+		while (end_pile(*pile) > med)
+		{
+			ft_rra(pile);
+			ft_pb(pile, pile2);
+			*a += 2;
+		}
+		while ((*pile)->next->nbr > med)
+		{
+			ft_sa(pile);
+			ft_pb(pile, pile2);
+			*a += 2;
+		}
+		if (ft_big_num(*pile) > med && ++(*a))
+			ft_rra(pile);
+	}
+}
+//Enlever a
+
+void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
+{
+	t_pile	*tmp;
+	int		a;
+	int		med;
+
+	med = ft_mediane(*pile, argc);
+	a = 0;
+	ft_separate_pile(pile, pile2, med, &a);
+	ft_min_up(pile, &a);
+	while (*pile2)
+	{
+		ft_min_up(pile2, &a);
+		ft_pa(pile, pile2);
+		ft_ra(pile);
+		a += 2;
+	}
+	tmp = *pile;
+	if (!ft_check_sort(*pile))
+	{
+		while (tmp->nbr <= med)
+		{
+			ft_pb(pile, pile2);
+			tmp = tmp->next;
+			a++;
+		}
+		while (*pile2)
+		{
+			ft_big_up(pile2, &a);
+			ft_pa(pile, pile2);
+			a++;
+		}
+	}
+	//Enlver le a
+	printf("Instrucitons %d\n", a);
 }

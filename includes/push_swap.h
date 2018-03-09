@@ -32,10 +32,20 @@ void			check_double(char **str, int a);
 int				ft_rmtake_pile(t_pile *begin);
 void			ft_algo(t_pile **pile, t_pile **pile2, int argc);
 void			ft_algo2(t_pile **pile, t_pile **pile2, int argc);
-void			ft_algo3(t_pile **pile, int argc);
+void			ft_algo3(t_pile **pile, t_pile **pile2, int argc);
 int				end_pile(t_pile *pile);
-int				ft_check_sort(t_pile **pile);
-
+int				ft_min_num(t_pile *pile);
+int				ft_big_num(t_pile *pile);
+int				ft_check_sort(t_pile *pile);
+int				ft_check_sort2(t_pile *pile2);
+int				check_pile2(t_pile **pile2);
+int				ft_mediane(t_pile *pile, int argc);
+void			ft_separate_pile(t_pile **pile, t_pile **pile2, int med, int *a);
+//Enlever a
+void			ft_big_up(t_pile **pile, int *a);
+//Enlever a
+void			ft_min_up(t_pile **pile, int *a);
+//Enlever a
 
 void			ft_sa(t_pile **begin);
 void			ft_sb(t_pile **pile2);

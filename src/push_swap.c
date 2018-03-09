@@ -47,10 +47,13 @@ int		main(int argc, char *argv[])
 	else
 		init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
 	ft_affichage(pile);
-	ft_algo2(&pile, &pile2, argc);
+	ft_algo2(&pile, &pile2, argc - 1);
 	ft_affichage(pile);
-	// if (pile2)
-	// 	ft_affichage(pile2);
+	if (pile2)
+	{
+		printf("PAS FINI\n");
+		ft_affichage(pile2);
+	}
 	ft_clear(pile);
 	ft_clear(pile2);
 	return (1);

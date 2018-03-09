@@ -12,47 +12,79 @@
 
 #include "push_swap.h"
 
-void		ft_min_num(t_pile **pile, t_pile *tmp, int *min)
+int			ft_mediane(t_pile *pile, int argc)
 {
-	tmp = *pile;
-	*min = (*pile)->nbr;
-	tmp = tmp->next;
-	while (tmp)
+	int		ret;
+	int		i;
+	t_pile	*tmp;
+	int		min;
+
+	i = 0;
+	ret = ft_min_num(pile);
+	i++;
+	while (i != argc / 2)
 	{
-		if (*min > tmp->nbr)
-			*min = tmp->nbr;
+		tmp = pile;
+		min = tmp->nbr;
 		tmp = tmp->next;
+		while (tmp)
+		{
+			if (min > tmp->nbr && tmp->nbr != ret && tmp->nbr > ret)
+				min = tmp->nbr;
+			tmp = tmp->next;
+		}
+		ret = min;
+		i++;
 	}
+	return (ret);
+}
+
+int			ft_min_num(t_pile *pile)
+{
+	int		min;
+
+	min = pile->nbr;
+	pile = pile->next;
+	while (pile)
+	{
+		if (min > pile->nbr)
+			min = pile->nbr;
+		pile = pile->next;
+	}
+	return (min);
+}
+
+int			ft_big_num(t_pile *pile)
+{
+	int		big;
+
+	big = pile->nbr;
+	pile = pile->next;
+	while (pile)
+	{
+		if (big < pile->nbr)
+			big = pile->nbr;
+		pile = pile->next;
+	}
+	return (big);
 }
 
 void		ft_algo2(t_pile **pile, t_pile **pile2, int argc)
 {
-	int i;
-	t_pile	*tmp;
-	int		min;
 	int a;
 
 	a = 0;
 	if (argc == 0)
 		return ;
-	while (argc != 1 && !(i = 0))
+	while (argc != 1)
 	{
-		ft_min_num(pile, tmp, &min);
-		tmp = *pile;
-		while (tmp->nbr != min && ++i)
-			tmp = tmp->next;
-		if (i > argc / 2)
-			while (i != argc && ++i && ++a)
-				ft_rra(pile);
-		else
-			while (i != 0 && i-- && ++a)
-				ft_ra(pile);
+		ft_min_up(pile, &a);
 		ft_pb(pile, pile2);
 		a++;
 		argc--;
 	}
 	while (*pile2 && ++a)
 		ft_pa(pile, pile2);
-		printf("Instructions %d\n",a );
+	printf("Instructions %d\n",a );
 // Enlever le a
 }
