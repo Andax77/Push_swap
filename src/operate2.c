@@ -54,7 +54,7 @@ void		ft_rb(t_pile **pile2)
 	new->next->next = NULL;
 }
 
-void	ft_rr(t_pile **pile, t_pile **pile2)
+void		ft_rr(t_pile **pile, t_pile **pile2)
 {
 	if (!*pile || !(*pile)->next || !*pile2 || !(*pile2)->next)
 		return ;

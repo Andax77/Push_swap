@@ -21,7 +21,7 @@ typedef struct	s_pile
 	struct s_pile	*next;
 }				t_pile;
 
-void	ft_affichage(t_pile *lst);
+void			ft_affichage(t_pile *lst);
 
 void			add_pile(t_pile **pile, int value);
 int				get_numbers(char *str);
@@ -40,11 +40,14 @@ int				ft_check_sort(t_pile *pile);
 int				ft_check_sort2(t_pile *pile2);
 int				check_pile2(t_pile **pile2);
 int				ft_mediane(t_pile *pile, int argc);
-void			ft_separate_pile(t_pile **pile, t_pile **pile2, int med, int *a);
+void			ft_separate_pile(t_pile **pile, t_pile **pile2, int med,
+																		int *a);
 //Enlever a
 void			ft_big_up(t_pile **pile, int *a);
+void			ft_big_up2(t_pile **pile, int *a);
 //Enlever a
 void			ft_min_up(t_pile **pile, int *a);
+void			ft_min_up2(t_pile **pile, int *a);
 //Enlever a
 
 void			ft_sa(t_pile **begin);

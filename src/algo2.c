@@ -17,23 +17,22 @@ int			ft_mediane(t_pile *pile, int argc)
 	int		ret;
 	int		i;
 	t_pile	*tmp;
-	int		min;
+	int		max;
 
 	i = 0;
 	ret = ft_min_num(pile);
 	i++;
 	while (i != argc / 2)
 	{
+		max = ft_big_num(pile);
 		tmp = pile;
-		min = tmp->nbr;
-		tmp = tmp->next;
-		while (tmp)
+ 		while (tmp)
 		{
-			if (min > tmp->nbr && tmp->nbr != ret && tmp->nbr > ret)
-				min = tmp->nbr;
+			if (max > tmp->nbr && tmp->nbr > ret)
+				max = tmp->nbr;
 			tmp = tmp->next;
 		}
-		ret = min;
+		ret = max;
 		i++;
 	}
 	return (ret);
@@ -78,8 +77,13 @@ void		ft_algo2(t_pile **pile, t_pile **pile2, int argc)
 		return ;
 	while (argc != 1)
 	{
-		ft_min_up(pile, &a);
-		ft_pb(pile, pile2);
+		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile))
+			ft_sa(pile);
+		if (!ft_check_sort(*pile))
+		{
+			ft_min_up(pile, &a);
+			ft_pb(pile, pile2);
+		}
 		a++;
 		argc--;
 	}

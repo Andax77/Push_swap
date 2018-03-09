@@ -72,29 +72,32 @@ void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
 
 	med = ft_mediane(*pile, argc);
 	a = 0;
-	ft_separate_pile(pile, pile2, med, &a);
-	ft_min_up(pile, &a);
-	while (*pile2)
+	if (!(ft_check_sort(*pile)))
 	{
-		ft_min_up(pile2, &a);
-		ft_pa(pile, pile2);
-		ft_ra(pile);
-		a += 2;
-	}
-	tmp = *pile;
-	if (!ft_check_sort(*pile))
-	{
-		while (tmp->nbr <= med)
-		{
-			ft_pb(pile, pile2);
-			tmp = tmp->next;
-			a++;
-		}
+		ft_separate_pile(pile, pile2, med, &a);
+		ft_min_up(pile, &a);
 		while (*pile2)
 		{
-			ft_big_up(pile2, &a);
+			ft_min_up2(pile2, &a);
 			ft_pa(pile, pile2);
-			a++;
+			ft_ra(pile);
+			a += 2;
+		}
+		tmp = *pile;
+		if (!ft_check_sort(*pile))
+		{
+			while (tmp->nbr <= med)
+			{
+				ft_pb(pile, pile2);
+				tmp = tmp->next;
+				a++;
+			}
+			while (*pile2)
+			{
+				ft_big_up2(pile2, &a);
+				ft_pa(pile, pile2);
+				a++;
+			}
 		}
 	}
 	//Enlver le a

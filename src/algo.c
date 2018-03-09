@@ -12,52 +12,6 @@
 
 #include "push_swap.h"
 
-void		ft_min_up(t_pile **pile, int *a)
-{
-	t_pile	*tmp;
-	int		argc;
-	int		i;
-
-	i = 0;
-	tmp = *pile;
-	argc = 0;
-	while (tmp && ++argc)
-		tmp = tmp->next;
-	tmp = *pile;
-	while (tmp->nbr != ft_min_num(*pile) && ++i)
-		tmp = tmp->next;
-	if (i > argc / 2)
-		while (i != argc && ++i && ++(*a))
-			ft_rra(pile);
-	else
-		while (i != 0 && i-- && ++(*a))
-			ft_ra(pile);
-	// Enlever le a
-}
-
-void		ft_big_up(t_pile **pile, int *a)
-{
-	t_pile	*tmp;
-	int		argc;
-	int		i;
-
-	i = 0;
-	tmp = *pile;
-	argc = 0;
-	while (tmp && ++argc)
-		tmp = tmp->next;
-	tmp = *pile;
-	while (tmp->nbr != ft_big_num(*pile) && ++i)
-		tmp = tmp->next;
-	if (i > argc / 2)
-		while (i != argc && ++i && ++(*a))
-			ft_rra(pile);
-	else
-		while (i != 0 && i-- && ++(*a))
-			ft_ra(pile);
-	// Enlever le a
-}
-
 int		end_pile(t_pile *pile)
 {
 	while (pile->next)
@@ -84,7 +38,7 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 
 	a = 0;
 	i = 0;
-	while (a != argc)
+	while (a != argc + 10)
 	{
 		if (*pile2 && (*pile2)->next)
 			i += check_pile2(pile);
