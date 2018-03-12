@@ -45,21 +45,31 @@ void		ft_separate_pile(t_pile **pile, t_pile **pile2, int med, int *a)
 	while (ft_big_num(*pile) > med)
 	{
 		while ((*pile)->nbr > med && ++(*a))
+		{
+			ft_putstr("pb\n");
 			ft_pb(pile, pile2);
+		}
 		while (end_pile(*pile) > med)
 		{
+			ft_putstr("rra\n");
+			ft_putstr("pb\n");
 			ft_rra(pile);
 			ft_pb(pile, pile2);
 			*a += 2;
 		}
 		while ((*pile)->next->nbr > med)
 		{
+			ft_putstr("sa\n");
+			ft_putstr("pb\n");
 			ft_sa(pile);
 			ft_pb(pile, pile2);
 			*a += 2;
 		}
 		if (ft_big_num(*pile) > med && ++(*a))
+		{
+			ft_putstr("rra\n");
 			ft_rra(pile);
+		}
 	}
 }
 //Enlever a
@@ -79,6 +89,8 @@ void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
 		while (*pile2)
 		{
 			ft_min_up2(pile2, &a);
+			ft_putstr("pa\n");
+			ft_putstr("ra\n");
 			ft_pa(pile, pile2);
 			ft_ra(pile);
 			a += 2;
@@ -88,6 +100,7 @@ void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
 		{
 			while (tmp->nbr <= med)
 			{
+				ft_putstr("pb\n");
 				ft_pb(pile, pile2);
 				tmp = tmp->next;
 				a++;
@@ -95,11 +108,12 @@ void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
 			while (*pile2)
 			{
 				ft_big_up2(pile2, &a);
+				ft_putstr("pa\n");
 				ft_pa(pile, pile2);
 				a++;
 			}
 		}
 	}
 	//Enlver le a
-	printf("Instrucitons %d\n", a);
+	// printf("Instrucitons %d\n", a);
 }

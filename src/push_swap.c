@@ -50,7 +50,7 @@ void	ft_go(t_pile **pile, t_pile **pile2, int a, int argc)
 	if (a < 6)
 		ft_algo(pile, pile2, argc - 1);
 	else if (a < 25)
-		ft_algo2(pile, pile2, argc - 1);
+		ft_algo3(pile, pile2, argc - 1);
 	else
 		ft_algo3(pile, pile2, argc - 1);
 }
@@ -62,7 +62,7 @@ int		main(int argc, char *argv[])
 	int		a;
 
 	pile2 = NULL;
-	if (argc == 1)
+	if (argc <= 2)
 		return (0);
 	if (argc > 2)
 	{
@@ -76,14 +76,8 @@ int		main(int argc, char *argv[])
 		if (!(a = ft_stack(ft_strsplit(argv[1], ' '))))
 			ft_error("Strsplit Error\n");
 	}
-	ft_affichage(pile);
 	ft_go(&pile, &pile2, a, argc);
-	ft_affichage(pile);
-	if (pile2)
-	{
-		printf("PAS FINI\n");
-		ft_affichage(pile2);
-	}
+	// ft_affichage(pile);
 	ft_clear(pile);
 	ft_clear(pile2);
 	return (1);

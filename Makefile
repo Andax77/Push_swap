@@ -33,8 +33,7 @@ SRC2 = $(addprefix $(SRC_PATH)/,$(SRC_NAME2))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 OBJ2 = $(addprefix $(OBJ_PATH2)/,$(OBJ_NAME2))
 
-all: $(NAME2)
-	$(NAME)
+all: $(NAME) $(NAME2)
 
 $(NAME): $(OBJ)
 	@make -C libft

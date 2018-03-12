@@ -23,6 +23,7 @@ typedef struct	s_pile
 
 void			ft_affichage(t_pile *lst);
 
+void			ft_clear(t_pile *lst);
 void			add_pile(t_pile **pile, int value);
 int				get_numbers(char *str);
 void			ft_error(char *str);

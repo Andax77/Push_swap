@@ -17,7 +17,7 @@ static void     ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
 	if (ft_strcmp(arg, "sa") == 0)
 		ft_sa(pile);
 	else if (ft_strcmp(arg, "sb") == 0)
-		ft_sb(pile);
+		ft_sb(pile2);
 	else if (ft_strcmp(arg, "ss") == 0)
 		ft_ss(pile, pile2);
 	else if (ft_strcmp(arg, "pa") == 0)
@@ -27,7 +27,7 @@ static void     ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
 	else if (ft_strcmp(arg, "ra") == 0)
 		ft_ra(pile);
 	else if (ft_strcmp(arg, "rb") == 0)
-		ft_rb(pile);
+		ft_rb(pile2);
 	else if (ft_strcmp(arg, "rr") == 0)
 		ft_rr(pile, pile2);
 	else if (ft_strcmp(arg, "rra") == 0)
@@ -36,8 +36,6 @@ static void     ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
 		ft_rrb(pile2);
 	else if (ft_strcmp(arg, "rrr") == 0)
 		ft_rrr(pile, pile2);
-	else
-		ft_error("Error\n");
 }
 
 static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
@@ -45,18 +43,16 @@ static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
 	char	*arg;
 	int	    ret;
 
-	// ft_printf(pile);
 	while ((ret = get_next_line(STDIN_FILENO, &arg)) == 1)
 	{
 		ft_cmd_pile(pile, pile2, arg);
-		ft_putstr(arg);
 		free(arg);
 	}
 	if (ret == -1)
 		ft_error("Error\n");
 }
 
-static	void	ft_clear(t_pile *lst)
+void	ft_clear(t_pile *lst)
 {
 	t_pile *tmp;
 
@@ -68,11 +64,36 @@ static	void	ft_clear(t_pile *lst)
 	}
 }
 
+void	ft_affichage(t_pile *lst)
+{
+	while (lst)
+	{
+		printf("%d\n", lst->nbr);
+		lst = lst->next;
+	}
+	printf("\n");
+}
+
+int			ft_check_sort(t_pile *pile)
+{
+	t_pile	*tmp;
+
+	tmp = pile;
+	while (tmp->next)
+	{
+		if (tmp->nbr > tmp->next->nbr)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 int				main(int argc, char *argv[])
 {
 	t_pile *pile;
 	t_pile *pile2;
 
+	pile = NULL;
 	pile2 = NULL;
 	if (argc == 1)
 		return (0);
@@ -81,6 +102,11 @@ int				main(int argc, char *argv[])
 	else
 		init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
 	ft_read_cmd(&pile, &pile2);
+	if (ft_check_sort(pile))
+		ft_putstr("OK\n");
+	else
+		ft_putstr("KO\n");
+	// ft_affichage(pile);
 	ft_clear(pile);
 	ft_clear(pile2);
 }
