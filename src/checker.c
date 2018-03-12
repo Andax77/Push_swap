@@ -93,7 +93,6 @@ int				main(int argc, char *argv[])
 	t_pile *pile;
 	t_pile *pile2;
 
-	pile = NULL;
 	pile2 = NULL;
 	if (argc == 1)
 		return (0);
@@ -102,11 +101,13 @@ int				main(int argc, char *argv[])
 	else
 		init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
 	ft_read_cmd(&pile, &pile2);
+	// ft_affichage(pile);
 	if (ft_check_sort(pile))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
 	// ft_affichage(pile);
 	ft_clear(pile);
-	ft_clear(pile2);
+	if (pile2)
+		ft_clear(pile2);
 }

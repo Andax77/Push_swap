@@ -52,7 +52,7 @@ void	ft_go(t_pile **pile, t_pile **pile2, int a, int argc)
 	else if (a < 25)
 		ft_algo3(pile, pile2, argc - 1);
 	else
-		ft_algo3(pile, pile2, argc - 1);
+		ft_algo2(pile, pile2, argc - 1);
 }
 
 int		main(int argc, char *argv[])
@@ -61,20 +61,20 @@ int		main(int argc, char *argv[])
 	t_pile	*pile2;
 	int		a;
 
+	pile = NULL;
 	pile2 = NULL;
-	if (argc <= 2)
+	printf("%d\n",ft_strcmp(argv[1], " "));
+	if (argc < 2)
 		return (0);
-	if (argc > 2)
+	if (argc > 2 || (argc == 2 && !(ft_strcmp(argv[1], " ") == 0)))
 	{
 		init_pile(argv, &pile, 1);
-		if (!(a = ft_stack(argv)))
-			ft_error("Strsplit Error\n");
+		a = ft_stack(argv);
 	}
 	else
 	{
 		init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
-		if (!(a = ft_stack(ft_strsplit(argv[1], ' '))))
-			ft_error("Strsplit Error\n");
+		a = ft_stack(ft_strsplit(argv[1], ' '));
 	}
 	ft_go(&pile, &pile2, a, argc);
 	// ft_affichage(pile);

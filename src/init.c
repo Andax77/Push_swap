@@ -97,7 +97,8 @@ void	init_pile(char *argv[], t_pile **begin, int a)
 
 	i = 0;
 	check_pile(argv, a);
-	check_double(argv, a);
+	if (argv[0] && argv[1])
+		check_double(argv, a);
 	while (argv[a])
 	{
 		add_pile(begin, ft_atoi(argv[a]));

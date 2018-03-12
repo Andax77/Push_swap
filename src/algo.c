@@ -67,7 +67,11 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 		a++;
 	}
 	while (*pile2 && ++i)
+	{
 		ft_pa(pile, pile2);
+		ft_putstr("pa\n");
+	}
+	// ft_affichage(*pile);
 	// printf("Instructions : %d\n", i);
 //Enlever les i pour Instructions
 }
