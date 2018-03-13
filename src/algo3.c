@@ -12,20 +12,6 @@
 
 #include "push_swap.h"
 
-int			ft_check_sort(t_pile *pile)
-{
-	t_pile	*tmp;
-
-	tmp = pile;
-	while (tmp->next)
-	{
-		if (tmp->nbr > tmp->next->nbr)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
 int			ft_check_sort2(t_pile *pile2)
 {
 	t_pile	*tmp;
@@ -49,21 +35,19 @@ void		ft_separate_pile(t_pile **pile, t_pile **pile2, int med, int *a)
 			ft_putstr("pb\n");
 			ft_pb(pile, pile2);
 		}
-		while (end_pile(*pile) > med)
+		while (end_pile(*pile) > med && (*a += 2))
 		{
 			ft_putstr("rra\n");
 			ft_putstr("pb\n");
 			ft_rra(pile);
 			ft_pb(pile, pile2);
-			*a += 2;
 		}
-		while ((*pile)->next->nbr > med)
+		while ((*pile)->next->nbr > med && (*a += 2))
 		{
 			ft_putstr("sa\n");
 			ft_putstr("pb\n");
 			ft_sa(pile);
 			ft_pb(pile, pile2);
-			*a += 2;
 		}
 		if (ft_big_num(*pile) > med && ++(*a))
 		{
@@ -72,7 +56,6 @@ void		ft_separate_pile(t_pile **pile, t_pile **pile2, int med, int *a)
 		}
 	}
 }
-//Enlever a
 
 void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
 {
@@ -98,19 +81,17 @@ void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)
 		tmp = *pile;
 		if (!ft_check_sort(*pile))
 		{
-			while (tmp->nbr <= med)
+			while (tmp->nbr <= med && ++a)
 			{
 				ft_putstr("pb\n");
 				ft_pb(pile, pile2);
 				tmp = tmp->next;
-				a++;
 			}
-			while (*pile2)
+			while (*pile2 && ++a)
 			{
 				ft_big_up2(pile2, &a);
 				ft_putstr("pa\n");
 				ft_pa(pile, pile2);
-				a++;
 			}
 		}
 	}

@@ -12,6 +12,25 @@
 
 #include "push_swap.h"
 
+int			go_split2(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == ' ' && ft_isdigit(str[i - 1]))
+		{
+			while (str[i] == ' ')
+				i++;
+			if (ft_isdigit(str[i]))
+				return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 void		ft_ra(t_pile **pile)
 {
 	int		tmp;

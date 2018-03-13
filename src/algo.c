@@ -44,7 +44,7 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 
 	a = 0;
 	i = 0;
-	while (a != argc + 10 || !ft_check_sort(*pile))
+	while ((a != argc + 10 || !ft_check_sort(*pile)) && (*pile)->next)
 	{
 		if (*pile2 && (*pile2)->next)
 			i += check_pile2(pile2);

@@ -4,12 +4,14 @@ GREP = grep "Error"
 INC_PATH = includes
 SRC_PATH = src
 SRC_NAME = checker.c \
+			checker2.c \
 			init.c \
 			operate.c \
 			operate2.c \
 			operate3.c \
 
 SRC_NAME2 = push_swap.c \
+			checker2.c \
 			init.c \
 			operate.c \
 			operate2.c \
@@ -39,7 +41,7 @@ $(NAME): $(OBJ)
 	@make -C libft
 	@libtool -static -o $(NAME) $(OBJ) libft/libft.a
 	@gcc $(FLAGS) $(LDFLAGS) $(CFLAGS) -o $@ $^
-	@printf '\033[32m[ ✔ ] %s\n\033[0m' " 🍯 Create Checker🍯    [ ✔ ]"
+	@printf '\033[32m[ ✔ ] %s\n\033[0m' " 🍯 Create Checker🍯   [ ✔ ]"
 
 $(NAME2): $(OBJ2)
 	@make -C libft

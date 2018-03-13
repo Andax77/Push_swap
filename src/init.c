@@ -78,19 +78,6 @@ void	add_pile(t_pile **begin, int value)
 	}
 }
 
-void	ft_error(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-	{
-		write(2, &str[i], 1);
-		i++;
-	}
-	exit(0);
-}
-
 void	init_pile(char *argv[], t_pile **begin, int a)
 {
 	int		i;

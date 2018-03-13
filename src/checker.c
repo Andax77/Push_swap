@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static void     ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
+static void		ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
 {
 	if (ft_strcmp(arg, "sa") == 0)
 		ft_sa(pile);
@@ -41,10 +41,13 @@ static void     ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
 static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
 {
 	char	*arg;
-	int	    ret;
+	int		ret;
+	int		i;
 
+	i = 0;
 	while ((ret = get_next_line(STDIN_FILENO, &arg)) == 1)
 	{
+		i++;
 		ft_cmd_pile(pile, pile2, arg);
 		free(arg);
 	}
@@ -52,62 +55,34 @@ static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
 		ft_error("Error\n");
 }
 
-void	ft_clear(t_pile *lst)
+void			ft_end(t_pile *pile, t_pile *pile2)
 {
-	t_pile *tmp;
-
-	while (lst)
-	{
-		tmp = lst;
-		lst = lst->next;
-		free(tmp);
-	}
-}
-
-void	ft_affichage(t_pile *lst)
-{
-	while (lst)
-	{
-		printf("%d\n", lst->nbr);
-		lst = lst->next;
-	}
-	printf("\n");
-}
-
-int			ft_check_sort(t_pile *pile)
-{
-	t_pile	*tmp;
-
-	tmp = pile;
-	while (tmp->next)
-	{
-		if (tmp->nbr > tmp->next->nbr)
-			return (0);
-		tmp = tmp->next;
-	}
-	return (1);
-}
-
-int				main(int argc, char *argv[])
-{
-	t_pile *pile;
-	t_pile *pile2;
-
-	pile2 = NULL;
-	if (argc == 1)
-		return (0);
-	if (argc > 2)
-		init_pile(argv, &pile, 1);
-	else
-		init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
-	ft_read_cmd(&pile, &pile2);
-	// ft_affichage(pile);
 	if (ft_check_sort(pile))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	// ft_affichage(pile);
 	ft_clear(pile);
 	if (pile2)
 		ft_clear(pile2);
+}
+
+int				main(int argc, char *argv[])
+{
+	t_pile		*pile;
+	t_pile		*pile2;
+
+	pile2 = NULL;
+	if (argc == 1)
+		return (0);
+	if (argc > 2 && !go_split(argv[1]))
+		init_pile(argv, &pile, 1);
+	else
+	{
+		if (go_split(argv[1]))
+			init_pile(ft_strsplit(argv[1], ' '), &pile, 0);
+		else
+			add_pile(&pile, ft_atoi(argv[1]));
+	}
+	ft_read_cmd(&pile, &pile2);
+	ft_end(pile, pile2);
 }
