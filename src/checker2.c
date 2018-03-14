@@ -24,14 +24,17 @@ void		ft_clear(t_pile *lst)
 	}
 }
 
-void		ft_affichage(t_pile *lst)
+void		ft_splitclear(char **str)
 {
-	while (lst)
+	int a;
+
+	a = 0;
+	while (str[a])
 	{
-		printf("%d\n", lst->nbr);
-		lst = lst->next;
+		free(str[a]);
+		a++;
 	}
-	printf("\n");
+	free(str);
 }
 
 int			ft_check_sort(t_pile *pile)

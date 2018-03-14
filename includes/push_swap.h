@@ -33,11 +33,15 @@ void			ft_clear(t_pile *lst);
 int				ft_check_sort(t_pile *pile);
 void			ft_error(char *str);
 
+void			ft_splitclear(char **str);
+int				ft_stack(char **argv, int fre);
+void			ft_partb(t_pile **pile, t_pile **pile2, int med, int *a);
+int				ft_next_min(t_pile *pile, int old);
 int				go_split(char *str);
 int				go_split2(char *str);
 void			add_pile(t_pile **pile, int value);
 int				get_numbers(char *str);
-void			init_pile(char *argv[], t_pile **pile, int a);
+void			init_pile(char *argv[], t_pile **pile, int a, int fre);
 void			check_pile(char **str, int a);
 void			check_double(char **str, int a);
 int				ft_rmtake_pile(t_pile *begin);
@@ -57,16 +61,16 @@ void			ft_big_up2(t_pile **pile, int *a);
 void			ft_min_up(t_pile **pile, int *a);
 void			ft_min_up2(t_pile **pile, int *a);
 
-void			ft_sa(t_pile **begin);
-void			ft_sb(t_pile **pile2);
-void			ft_ss(t_pile **pile, t_pile **pile2);
-void			ft_pa(t_pile **pile, t_pile **pile2);
-void			ft_pb(t_pile **pile, t_pile **pile2);
-void			ft_ra(t_pile **pile);
-void			ft_rb(t_pile **pile2);
-void			ft_rr(t_pile **pile, t_pile **pile2);
-void			ft_rra(t_pile **pile);
-void			ft_rrb(t_pile **pile2);
-void			ft_rrr(t_pile **pile, t_pile **pile2);
+void			ft_sa(t_pile **begin, int dis);
+void			ft_sb(t_pile **pile2, int dis);
+void			ft_ss(t_pile **pile, t_pile **pile2, int dis);
+void			ft_pa(t_pile **pile, t_pile **pile2, int dis);
+void			ft_pb(t_pile **pile, t_pile **pile2, int dis);
+void			ft_ra(t_pile **pile, int dis);
+void			ft_rb(t_pile **pile2, int dis);
+void			ft_rr(t_pile **pile, t_pile **pile2, int dis);
+void			ft_rra(t_pile **pile, int dis);
+void			ft_rrb(t_pile **pile2, int dis);
+void			ft_rrr(t_pile **pile, t_pile **pile2, int dis);
 
 #endif

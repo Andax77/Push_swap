@@ -31,7 +31,7 @@ int			go_split2(char *str)
 	return (0);
 }
 
-void		ft_ra(t_pile **pile)
+void		ft_ra(t_pile **pile, int dis)
 {
 	int		tmp;
 	t_pile	*new;
@@ -50,9 +50,11 @@ void		ft_ra(t_pile **pile)
 		ft_error("Malloc Error\n");
 	new->next->nbr = tmp;
 	new->next->next = NULL;
+	if (dis)
+		ft_putstr("ra\n");
 }
 
-void		ft_rb(t_pile **pile2)
+void		ft_rb(t_pile **pile2, int dis)
 {
 	int		tmp;
 	t_pile	*new;
@@ -71,12 +73,16 @@ void		ft_rb(t_pile **pile2)
 		ft_error("Malloc Error\n");
 	new->next->nbr = tmp;
 	new->next->next = NULL;
+	if (dis)
+		ft_putstr("rb\n");
 }
 
-void		ft_rr(t_pile **pile, t_pile **pile2)
+void		ft_rr(t_pile **pile, t_pile **pile2, int dis)
 {
 	if (!*pile || !(*pile)->next || !*pile2 || !(*pile2)->next)
 		return ;
-	ft_ra(pile);
-	ft_rb(pile2);
+	ft_ra(pile, 0);
+	ft_rb(pile2, 0);
+	if (dis)
+		ft_putstr("rrr\n");
 }

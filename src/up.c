@@ -18,27 +18,19 @@ void		ft_min_up(t_pile **pile, int *a)
 	int		argc;
 	int		i;
 
-	i = 0;
 	tmp = *pile;
 	argc = 0;
-	while (tmp && ++argc)
+	while (tmp && ++argc && !(i = 0))
 		tmp = tmp->next;
 	tmp = *pile;
 	while (tmp->nbr != ft_min_num(*pile) && ++i)
 		tmp = tmp->next;
 	if (i > argc / 2)
 		while (i != argc && ++i && ++(*a))
-		{
-			ft_putstr("rra\n");
-			ft_rra(pile);
-		}
+			ft_rra(pile, 1);
 	else
 		while (i != 0 && i-- && ++(*a))
-		{
-			ft_putstr("ra\n");
-			ft_ra(pile);
-		}
-	// Enlever le a
+			ft_ra(pile, 1);
 }
 
 void		ft_big_up(t_pile **pile, int *a)
@@ -57,17 +49,10 @@ void		ft_big_up(t_pile **pile, int *a)
 		tmp = tmp->next;
 	if (i > argc / 2)
 		while (i != argc && ++i && ++(*a))
-		{
-			ft_putstr("rra\n");
-			ft_rra(pile);
-		}
+			ft_rra(pile, 1);
 	else
 		while (i != 0 && i-- && ++(*a))
-		{
-			ft_putstr("ra\n");
-			ft_ra(pile);
-		}
-	// Enlever le a
+			ft_ra(pile, 1);
 }
 
 void		ft_min_up2(t_pile **pile, int *a)
@@ -86,17 +71,10 @@ void		ft_min_up2(t_pile **pile, int *a)
 		tmp = tmp->next;
 	if (i > argc / 2)
 		while (i != argc && ++i && ++(*a))
-		{
-			ft_putstr("rrb\n");
-			ft_rrb(pile);
-		}
+			ft_rrb(pile, 1);
 	else
 		while (i != 0 && i-- && ++(*a))
-		{
-			ft_putstr("rb\n");
-			ft_rb(pile);
-		}
-	// Enlever le a
+			ft_rb(pile, 1);
 }
 
 void		ft_big_up2(t_pile **pile, int *a)
@@ -115,15 +93,8 @@ void		ft_big_up2(t_pile **pile, int *a)
 		tmp = tmp->next;
 	if (i > argc / 2)
 		while (i != argc && ++i && ++(*a))
-		{
-			ft_putstr("rrb\n");
-			ft_rrb(pile);
-		}
+			ft_rrb(pile, 1);
 	else
 		while (i != 0 && i-- && ++(*a))
-		{
-			ft_putstr("rb\n");
-			ft_rb(pile);
-		}
-	// Enlever le a
+			ft_rb(pile, 1);
 }

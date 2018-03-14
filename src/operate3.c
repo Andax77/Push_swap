@@ -28,7 +28,7 @@ int		ft_rmtake_pile(t_pile *begin)
 	return (nbr);
 }
 
-void	ft_rra(t_pile **pile)
+void	ft_rra(t_pile **pile, int dis)
 {
 	t_pile	*new;
 
@@ -39,9 +39,11 @@ void	ft_rra(t_pile **pile)
 	new->nbr = ft_rmtake_pile(*pile);
 	new->next = *pile;
 	*pile = new;
+	if (dis)
+		ft_putstr("rra\n");
 }
 
-void	ft_rrb(t_pile **pile2)
+void	ft_rrb(t_pile **pile2, int dis)
 {
 	t_pile	*new;
 
@@ -52,12 +54,16 @@ void	ft_rrb(t_pile **pile2)
 	new->nbr = ft_rmtake_pile(*pile2);
 	new->next = *pile2;
 	*pile2 = new;
+	if (dis)
+		ft_putstr("rrb\n");
 }
 
-void	ft_rrr(t_pile **pile, t_pile **pile2)
+void	ft_rrr(t_pile **pile, t_pile **pile2, int dis)
 {
 	if (!(*pile) || !(*pile)->next || !(*pile2) || !(*pile2)->next)
 		return ;
-	ft_ra(pile);
-	ft_rb(pile2);
+	ft_ra(pile, 0);
+	ft_rb(pile2, 0);
+	if (dis)
+		ft_putstr("rrr\n");
 }

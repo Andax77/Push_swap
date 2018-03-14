@@ -78,7 +78,7 @@ void	add_pile(t_pile **begin, int value)
 	}
 }
 
-void	init_pile(char *argv[], t_pile **begin, int a)
+void	init_pile(char *argv[], t_pile **begin, int a, int fre)
 {
 	int		i;
 
@@ -91,4 +91,6 @@ void	init_pile(char *argv[], t_pile **begin, int a)
 		add_pile(begin, ft_atoi(argv[a]));
 		a++;
 	}
+	if (fre)
+		ft_splitclear(argv);
 }

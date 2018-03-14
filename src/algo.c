@@ -24,16 +24,10 @@ int		check_pile2(t_pile **pile2)
 	int i;
 
 	i = 0;
-	if ((*pile2)->nbr < (*pile2)->next->nbr && ++i)
-	{
-		ft_putstr("sb\n");
-		ft_sb(pile2);
-	}
 	if ((*pile2)->nbr < end_pile(*pile2) && ++i)
-	{
-		ft_putstr("rb\n");
-		ft_rb(pile2);
-	}
+		ft_rb(pile2, 1);
+	if ((*pile2)->nbr < (*pile2)->next->nbr && ++i)
+		ft_sb(pile2, 1);
 	return (i);
 }
 
@@ -44,34 +38,21 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 
 	a = 0;
 	i = 0;
-	while ((a != argc + 10 || !ft_check_sort(*pile)) && (*pile)->next)
+	while ((a != argc + 9 || !ft_check_sort(*pile)))
 	{
+		if (*pile2 && (*pile)->nbr < (*pile2)->nbr)
+			ft_pb(pile, pile2, 1);
 		if (*pile2 && (*pile2)->next)
 			i += check_pile2(pile2);
-		if (((*pile)->nbr < (*pile)->next->nbr) && ((*pile)->nbr < end_pile(*pile))
-		&& !ft_check_sort(*pile) && ++i)
-		{
-			ft_putstr("pb\n");
-			ft_pb(pile, pile2);
-		}
+		if (((*pile)->nbr < (*pile)->next->nbr) &&
+		((*pile)->nbr < end_pile(*pile)) && !ft_check_sort(*pile) && ++i)
+			ft_pb(pile, pile2, 1);
 		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile) && ++i)
-		{
-			ft_putstr("sa\n");
-			ft_sa(pile);
-		}
+			ft_sa(pile, 1);
 		while ((*pile)->nbr > end_pile(*pile) && !ft_check_sort(*pile) && ++i)
-		{
-			ft_putstr("rra\n");
-			ft_rra(pile);
-		}
+			ft_rra(pile, 1);
 		a++;
 	}
 	while (*pile2 && ++i)
-	{
-		ft_pa(pile, pile2);
-		ft_putstr("pa\n");
-	}
-	// ft_affichage(*pile);
-	// printf("Instructions : %d\n", i);
-//Enlever les i pour Instructions
+		ft_pa(pile, pile2, 1);
 }

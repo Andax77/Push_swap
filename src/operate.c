@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	ft_sa(t_pile **pile)
+void	ft_sa(t_pile **pile, int dis)
 {
 	int data;
 
@@ -21,9 +21,11 @@ void	ft_sa(t_pile **pile)
 	data = (*pile)->nbr;
 	(*pile)->nbr = (*pile)->next->nbr;
 	(*pile)->next->nbr = data;
+	if (dis)
+		ft_putstr("sa\n");
 }
 
-void	ft_sb(t_pile **pile2)
+void	ft_sb(t_pile **pile2, int dis)
 {
 	int data;
 
@@ -32,17 +34,21 @@ void	ft_sb(t_pile **pile2)
 	data = (*pile2)->nbr;
 	(*pile2)->nbr = (*pile2)->next->nbr;
 	(*pile2)->next->nbr = data;
+	if (dis)
+		ft_putstr("sb\n");
 }
 
-void	ft_ss(t_pile **pile, t_pile **pile2)
+void	ft_ss(t_pile **pile, t_pile **pile2, int dis)
 {
 	if (!(*pile) || !(*pile)->next || !(*pile2) || !(*pile2)->next)
 		return ;
-	ft_sa(pile);
-	ft_sb(pile2);
+	ft_sa(pile, 0);
+	ft_sb(pile2, 0);
+	if (dis)
+		ft_putstr("ss\n");
 }
 
-void	ft_pa(t_pile **pile, t_pile **pile2)
+void	ft_pa(t_pile **pile, t_pile **pile2, int dis)
 {
 	t_pile *new;
 	t_pile *fre;
@@ -57,9 +63,11 @@ void	ft_pa(t_pile **pile, t_pile **pile2)
 	fre = *pile2;
 	*pile2 = (*pile2)->next;
 	free(fre);
+	if (dis)
+		ft_putstr("pa\n");
 }
 
-void	ft_pb(t_pile **pile, t_pile **pile2)
+void	ft_pb(t_pile **pile, t_pile **pile2, int dis)
 {
 	t_pile *new;
 	t_pile *fre;
@@ -74,4 +82,6 @@ void	ft_pb(t_pile **pile, t_pile **pile2)
 	fre = *pile;
 	*pile = (*pile)->next;
 	free(fre);
+	if (dis)
+		ft_putstr("pb\n");
 }
