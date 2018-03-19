@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void		ft_min_up(t_pile **pile, int *a)
+int		ft_min_up(t_pile **pile)
 {
 	t_pile	*tmp;
 	int		argc;
@@ -26,14 +26,15 @@ void		ft_min_up(t_pile **pile, int *a)
 	while (tmp->nbr != ft_min_num(*pile) && ++i)
 		tmp = tmp->next;
 	if (i > argc / 2)
-		while (i != argc && ++i && ++(*a))
+		while (i != argc && ++i)
 			ft_rra(pile, 1);
 	else
-		while (i != 0 && i-- && ++(*a))
+		while (i != 0 && i--)
 			ft_ra(pile, 1);
+	return (1);
 }
 
-void		ft_big_up(t_pile **pile, int *a)
+int		ft_big_up(t_pile **pile)
 {
 	t_pile	*tmp;
 	int		argc;
@@ -48,14 +49,15 @@ void		ft_big_up(t_pile **pile, int *a)
 	while (tmp->nbr != ft_big_num(*pile) && ++i)
 		tmp = tmp->next;
 	if (i > argc / 2)
-		while (i != argc && ++i && ++(*a))
+		while (i != argc && ++i)
 			ft_rra(pile, 1);
 	else
-		while (i != 0 && i-- && ++(*a))
+		while (i != 0 && i--)
 			ft_ra(pile, 1);
+	return (1);
 }
 
-void		ft_min_up2(t_pile **pile, int *a)
+int		ft_min_up2(t_pile **pile)
 {
 	t_pile	*tmp;
 	int		argc;
@@ -70,14 +72,15 @@ void		ft_min_up2(t_pile **pile, int *a)
 	while (tmp->nbr != ft_min_num(*pile) && ++i)
 		tmp = tmp->next;
 	if (i > argc / 2)
-		while (i != argc && ++i && ++(*a))
+		while (i != argc && ++i)
 			ft_rrb(pile, 1);
 	else
-		while (i != 0 && i-- && ++(*a))
+		while (i != 0 && i--)
 			ft_rb(pile, 1);
+	return (1);
 }
 
-void		ft_big_up2(t_pile **pile, int *a)
+int		ft_big_up2(t_pile **pile)
 {
 	t_pile	*tmp;
 	int		argc;
@@ -92,9 +95,10 @@ void		ft_big_up2(t_pile **pile, int *a)
 	while (tmp->nbr != ft_big_num(*pile) && ++i)
 		tmp = tmp->next;
 	if (i > argc / 2)
-		while (i != argc && ++i && ++(*a))
+		while (i != argc && ++i)
 			ft_rrb(pile, 1);
 	else
-		while (i != 0 && i-- && ++(*a))
+		while (i != 0 && i--)
 			ft_rb(pile, 1);
+	return (1);
 }

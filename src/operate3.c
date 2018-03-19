@@ -28,12 +28,12 @@ int		ft_rmtake_pile(t_pile *begin)
 	return (nbr);
 }
 
-void	ft_rra(t_pile **pile, int dis)
+int		ft_rra(t_pile **pile, int dis)
 {
 	t_pile	*new;
 
 	if (!*pile || !(*pile)->next)
-		return ;
+		return (1);
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
 		ft_error("Malloc Error\n");
 	new->nbr = ft_rmtake_pile(*pile);
@@ -41,14 +41,15 @@ void	ft_rra(t_pile **pile, int dis)
 	*pile = new;
 	if (dis)
 		ft_putstr("rra\n");
+	return (1);
 }
 
-void	ft_rrb(t_pile **pile2, int dis)
+int		ft_rrb(t_pile **pile2, int dis)
 {
 	t_pile	*new;
 
 	if (!*pile2 || !(*pile2)->next)
-		return ;
+		return (1);
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
 		ft_error("Malloc Error\n");
 	new->nbr = ft_rmtake_pile(*pile2);
@@ -56,14 +57,16 @@ void	ft_rrb(t_pile **pile2, int dis)
 	*pile2 = new;
 	if (dis)
 		ft_putstr("rrb\n");
+	return (1);
 }
 
-void	ft_rrr(t_pile **pile, t_pile **pile2, int dis)
+int		ft_rrr(t_pile **pile, t_pile **pile2, int dis)
 {
 	if (!(*pile) || !(*pile)->next || !(*pile2) || !(*pile2)->next)
-		return ;
+		return (1);
 	ft_ra(pile, 0);
 	ft_rb(pile2, 0);
 	if (dis)
 		ft_putstr("rrr\n");
+	return (1);
 }

@@ -31,14 +31,14 @@ int			go_split2(char *str)
 	return (0);
 }
 
-void		ft_ra(t_pile **pile, int dis)
+int			ft_ra(t_pile **pile, int dis)
 {
 	int		tmp;
 	t_pile	*new;
 	t_pile	*fre;
 
 	if (!*pile || !(*pile)->next)
-		return ;
+		return (1);
 	tmp = (*pile)->nbr;
 	fre = *pile;
 	*pile = (*pile)->next;
@@ -52,16 +52,17 @@ void		ft_ra(t_pile **pile, int dis)
 	new->next->next = NULL;
 	if (dis)
 		ft_putstr("ra\n");
+	return (1);
 }
 
-void		ft_rb(t_pile **pile2, int dis)
+int			ft_rb(t_pile **pile2, int dis)
 {
 	int		tmp;
 	t_pile	*new;
 	t_pile	*fre;
 
 	if (!*pile2 || !(*pile2)->next)
-		return ;
+		return (1);
 	tmp = (*pile2)->nbr;
 	fre = *pile2;
 	*pile2 = (*pile2)->next;
@@ -75,14 +76,16 @@ void		ft_rb(t_pile **pile2, int dis)
 	new->next->next = NULL;
 	if (dis)
 		ft_putstr("rb\n");
+	return (1);
 }
 
-void		ft_rr(t_pile **pile, t_pile **pile2, int dis)
+int			ft_rr(t_pile **pile, t_pile **pile2, int dis)
 {
 	if (!*pile || !(*pile)->next || !*pile2 || !(*pile2)->next)
-		return ;
+		return (1);
 	ft_ra(pile, 0);
 	ft_rb(pile2, 0);
 	if (dis)
 		ft_putstr("rrr\n");
+	return (1);
 }

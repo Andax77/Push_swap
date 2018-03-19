@@ -77,9 +77,9 @@ void		ft_algo2(t_pile **pile, t_pile **pile2, int argc)
 		return ;
 	while (argc != 1 && ++a)
 	{
-		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile))
+		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile, argc + 1))
 			ft_sa(pile, 1);
-		if (!ft_check_sort(*pile))
+		if (!ft_check_sort(*pile, argc + 1))
 		{
 			ft_min_up(pile, &a);
 			ft_pb(pile, pile2, 1);

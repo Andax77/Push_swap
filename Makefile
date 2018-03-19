@@ -1,6 +1,7 @@
 NAME = checker
 NAME2 = push_swap
 GREP = grep "Error"
+ARG = 5 2 3 4 0 1
 INC_PATH = includes
 SRC_PATH = src
 SRC_NAME = checker.c \
@@ -58,6 +59,10 @@ obj2/%.o: src/%.c
 	@mkdir -p obj2
 	@gcc $(FLAGS) $(CFLAGS) -c $< -o $@
 	@printf '\033[35m[ 🍔  ] %s\n\033[0m' "$<"
+
+test42:
+	@./$(NAME2) $(ARG) | wc -l | sed "s/ //g" | tr "\n" "\t"
+	@./$(NAME2) $(ARG) | ./$(NAME) $(ARG) | sed "s/KO/KO >>> FAIL!!!/g"
 
 clean:
 	@make -C libft clean

@@ -38,18 +38,18 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 
 	a = 0;
 	i = 0;
-	while ((a != argc + 9 || !ft_check_sort(*pile)))
+	while ((a != argc + 9 || !ft_check_sort(*pile, argc)))
 	{
 		if (*pile2 && (*pile)->nbr < (*pile2)->nbr)
 			ft_pb(pile, pile2, 1);
 		if (*pile2 && (*pile2)->next)
 			i += check_pile2(pile2);
 		if (((*pile)->nbr < (*pile)->next->nbr) &&
-		((*pile)->nbr < end_pile(*pile)) && !ft_check_sort(*pile) && ++i)
+		((*pile)->nbr < end_pile(*pile)) && !ft_check_sort(*pile, argc + 1) && ++i)
 			ft_pb(pile, pile2, 1);
-		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile) && ++i)
+		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile, argc + 1) && ++i)
 			ft_sa(pile, 1);
-		while ((*pile)->nbr > end_pile(*pile) && !ft_check_sort(*pile) && ++i)
+		while ((*pile)->nbr > end_pile(*pile) && !ft_check_sort(*pile, argc + 1) && ++i)
 			ft_rra(pile, 1);
 		a++;
 	}

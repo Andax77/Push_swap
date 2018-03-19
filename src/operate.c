@@ -12,49 +12,52 @@
 
 #include "push_swap.h"
 
-void	ft_sa(t_pile **pile, int dis)
+int		ft_sa(t_pile **pile, int dis)
 {
 	int data;
 
 	if (!(*pile) || !((*pile)->next))
-		return ;
+		return (1);
 	data = (*pile)->nbr;
 	(*pile)->nbr = (*pile)->next->nbr;
 	(*pile)->next->nbr = data;
 	if (dis)
 		ft_putstr("sa\n");
+	return (1);
 }
 
-void	ft_sb(t_pile **pile2, int dis)
+int		ft_sb(t_pile **pile2, int dis)
 {
 	int data;
 
 	if (!(*pile2) || !((*pile2)->next))
-		return ;
+		return (1);
 	data = (*pile2)->nbr;
 	(*pile2)->nbr = (*pile2)->next->nbr;
 	(*pile2)->next->nbr = data;
 	if (dis)
 		ft_putstr("sb\n");
+	return (1);
 }
 
-void	ft_ss(t_pile **pile, t_pile **pile2, int dis)
+int		ft_ss(t_pile **pile, t_pile **pile2, int dis)
 {
 	if (!(*pile) || !(*pile)->next || !(*pile2) || !(*pile2)->next)
-		return ;
+		return (1);
 	ft_sa(pile, 0);
 	ft_sb(pile2, 0);
 	if (dis)
 		ft_putstr("ss\n");
+	return (1);
 }
 
-void	ft_pa(t_pile **pile, t_pile **pile2, int dis)
+int		ft_pa(t_pile **pile, t_pile **pile2, int dis)
 {
 	t_pile *new;
 	t_pile *fre;
 
 	if (!*pile2)
-		return ;
+		return (1);
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
 		ft_error("Malloc Error\n");
 	new->nbr = (*pile2)->nbr;
@@ -65,15 +68,16 @@ void	ft_pa(t_pile **pile, t_pile **pile2, int dis)
 	free(fre);
 	if (dis)
 		ft_putstr("pa\n");
+	return (1);
 }
 
-void	ft_pb(t_pile **pile, t_pile **pile2, int dis)
+int		ft_pb(t_pile **pile, t_pile **pile2, int dis)
 {
 	t_pile *new;
 	t_pile *fre;
 
 	if (!*pile)
-		return ;
+		return (1);
 	if (!(new = (t_pile*)malloc(sizeof(t_pile))))
 		ft_error("Malloc Error\n");
 	new->nbr = (*pile)->nbr;
@@ -84,4 +88,5 @@ void	ft_pb(t_pile **pile, t_pile **pile2, int dis)
 	free(fre);
 	if (dis)
 		ft_putstr("pb\n");
+	return (1);
 }

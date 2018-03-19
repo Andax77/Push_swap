@@ -37,12 +37,12 @@ void		ft_splitclear(char **str)
 	free(str);
 }
 
-int			ft_check_sort(t_pile *pile)
+int			ft_check_sort(t_pile *pile, int size)
 {
 	t_pile	*tmp;
 
 	tmp = pile;
-	while (tmp->next)
+	while (tmp->next && --size)
 	{
 		if (tmp->nbr > tmp->next->nbr)
 			return (0);

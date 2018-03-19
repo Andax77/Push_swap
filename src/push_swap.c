@@ -27,12 +27,15 @@ int			ft_stack(char **argv, int fre)
 
 void		ft_go(t_pile **pile, t_pile **pile2, int a, int argc)
 {
-	if (a < 6)
-		ft_algo(pile, pile2, argc - 1);
-	else if (a < 25)
-		ft_algo2(pile, pile2, argc - 1);
-	else
-		ft_algo3(pile, pile2, argc - 1);
+	if (a == 1)
+		return ;
+	ft_algo3(pile, pile2, argc);
+	// else if (a < 6)
+	// 	ft_algo(pile, pile2, argc - 1);
+	// else if (a < 25)
+	// 	ft_algo2(pile, pile2, argc - 1);
+	// else
+	// 	ft_algo3(pile, pile2, argc);
 }
 
 int			main(int argc, char *argv[])
@@ -45,7 +48,7 @@ int			main(int argc, char *argv[])
 	pile2 = NULL;
 	if (argc < 2)
 		return (0);
-	if (argc > 2 && !go_split(argv[1]) && (a = ft_stack(argv, 0)))
+	if (argc > 2 && (a = ft_stack(argv, 0)))
 		init_pile(argv, &pile, 1, 0);
 	else
 	{
@@ -54,8 +57,9 @@ int			main(int argc, char *argv[])
 		else if ((a = 1))
 			add_pile(&pile, ft_atoi(argv[1]));
 	}
-	ft_go(&pile, &pile2, a, argc);
+	ft_go(&pile, &pile2, a, pile_size(pile));
 	ft_clear(pile);
-	ft_clear(pile2);
+	if (pile2)
+		ft_clear(pile2);
 	return (1);
 }
