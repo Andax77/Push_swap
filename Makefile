@@ -9,7 +9,12 @@ SRC_NAME = checker.c \
 			init.c \
 			operate.c \
 			operate2.c \
+			up.c \
+			algo.c \
+			algo2.c \
 			operate3.c \
+			ft_sort_bloc.c \
+			algo3.c \
 
 SRC_NAME2 = push_swap.c \
 			checker2.c \
@@ -20,7 +25,8 @@ SRC_NAME2 = push_swap.c \
 			algo.c \
 			algo2.c \
 			algo3.c \
-			up.c
+			up.c \
+			ft_sort_bloc.c \
 
 OBJ_PATH2 = obj2
 OBJ_PATH = obj

@@ -117,92 +117,44 @@ static void	ft_sort_int2(t_pile **pile2, int size)
 	}
 }
 
-void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
-{
-	int		i;
-
-	i = 0;
-	// printf("Size %d\n", (size >> 1) + (size & 1));
-	if (!(*pile2))
-		return ;
-	if (!first)
-	{
-		while (i != (size >> 1) && ++i)
-		{
-			if ((*pile)->nbr < ft_min_num(*pile2))
-				ft_big_up2(pile2) && ft_pb(pile, pile2, 1) && ft_rb(pile2, 1);
-			else if ((*pile)->nbr > (*pile2)->nbr)
-				ft_pb(pile, pile2, 1);
-			else
-			{
-				while ((*pile)->nbr > (*pile2)->nbr)
-					ft_rb(pile, 1);
-				ft_pb(pile, pile2, 1);
-			}
-		}
-		ft_big_up2(pile2);
-	}
-	else
-	{
-		while (i != (size >> 1) + (size & 1) && ++i)
-		{
-			if ((*pile2)->nbr > ft_big_num(*pile))
-				ft_min_up(pile) && ft_pa(pile, pile2, 1) && ft_ra(pile, 1);
-			else if ((*pile)->nbr > (*pile2)->nbr)
-				ft_pa(pile, pile2, 1);
-			else
-			{
-				while ((*pile2)->nbr > (*pile)->nbr)
-					ft_ra(pile, 1);
-				ft_pa(pile, pile2, 1);
-			}
-		}
-		ft_min_up(pile);
-	}
-	// printf("Stop\n");
-	// if (!first)
-	// 	while ((size >> 1) + (size & 1) && size--)
-	// 		ft_pb(pile, pile2, 1);
-}
-
 void		merge_sort(t_pile **pile, t_pile **pile2, int first, int size)
 {
 // first is to know where the result will go
 	if (size <= 3)
 	{
 		if (first)
-		// {
+		{
 			ft_sort_int(pile, size);
-		// 	printf("%s\n", "SORTED PILE A");
-		// 	ft_affichage(*pile);
-		// }
+			printf("%s\n", "SORTED PILE A");
+			ft_affichage(*pile);
+		}
 		else
-		// {
+		{
 			ft_sort_int2(pile2, size);
-		// 	printf("%s\n", "SORTED PILE B");
-		// 	ft_affichage(*pile2);
-		// }
+			printf("%s\n", "SORTED PILE B");
+			ft_affichage(*pile2);
+		}
 		return ;
 	}
 	ft_separate_pile(pile, pile2, first, size);
-	// printf("%s\n", "SEPARATION");
-	// ft_affichage(*pile);
-	// ft_affichage(*pile2);
-	// printf("%s\n", "SEPARATION");
+	printf("%s\n", "SEPARATION");
+	ft_affichage(*pile);
+	ft_affichage(*pile2);
+	printf("%s\n", "SEPARATION");
 	merge_sort(pile, pile2, 1, size >> 1);
 	merge_sort(pile, pile2, 0, (size >> 1) + (size & 1));
-	// printf("First %d\n",first );
+	printf("First %d\n",first );
 	ft_sort_bloc(pile, pile2, size, first);
-	// if (first)
-	// {
-	// 	// printf("%s\n", "SORTED BLOC A");
-	// 	ft_affichage(*pile);
-	// }
-	// else
-	// {
-	// 	printf("%s\n", "SORTED BLOC B");
-	// 	ft_affichage(*pile2);
-	// }
+	if (first)
+	{
+		printf("%s\n", "SORTED BLOC A");
+		ft_affichage(*pile);
+	}
+	else
+	{
+		printf("%s\n", "SORTED BLOC B");
+		ft_affichage(*pile2);
+	}
 }
 
 void		ft_algo3(t_pile **pile, t_pile **pile2, int argc)

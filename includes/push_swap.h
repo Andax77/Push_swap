@@ -28,7 +28,7 @@ typedef struct	s_bonus
 }				t_bonus;
 
 void			ft_affichage(t_pile *lst);
-void			ft_end(t_pile *pile, t_pile *pile2);
+void			ft_end(t_pile *pile, t_pile *pile2, int size);
 void			ft_clear(t_pile *lst);
 int				ft_check_sort(t_pile *pile, int size);
 int				ft_check_sort2(t_pile *pile2, int size);

@@ -81,12 +81,12 @@ void		ft_algo2(t_pile **pile, t_pile **pile2, int argc)
 			ft_sa(pile, 1);
 		if (!ft_check_sort(*pile, argc + 1))
 		{
-			ft_min_up(pile, &a);
+			ft_min_up(pile);
 			ft_pb(pile, pile2, 1);
 		}
 		argc--;
 	}
 	while (*pile2 && ++a)
 		ft_pa(pile, pile2, 1);
-	printf("Instrucitons %d\n", a);
+	// printf("Instrucitons %d\n", a);
 }

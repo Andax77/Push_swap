@@ -55,9 +55,9 @@ static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
 		ft_error("Error\n");
 }
 
-void			ft_end(t_pile *pile, t_pile *pile2)
+void			ft_end(t_pile *pile, t_pile *pile2, int size)
 {
-	if (ft_check_sort(pile))
+	if (ft_check_sort(pile, size))
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
@@ -84,5 +84,5 @@ int				main(int argc, char *argv[])
 			add_pile(&pile, ft_atoi(argv[1]));
 	}
 	ft_read_cmd(&pile, &pile2);
-	ft_end(pile, pile2);
+	ft_end(pile, pile2, pile_size(pile));
 }
