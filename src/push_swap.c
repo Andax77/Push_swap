@@ -22,7 +22,7 @@ int			ft_stack(char **argv, int fre)
 	ret--;
 	if (fre)
 		ft_splitclear(argv);
-	return (ret);
+	return (ret + 1);
 }
 
 void		ft_go(t_pile **pile, t_pile **pile2, int a, int argc)
