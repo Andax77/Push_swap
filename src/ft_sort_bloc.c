@@ -12,66 +12,89 @@
 
 #include "push_swap.h"
 
-void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
+int			ft_check_sort2(t_pile *pile2, int size)
+{
+	t_pile	*tmp;
+
+	tmp = pile2;
+	while (tmp->next && --size)
+	{
+		if (tmp->nbr < tmp->next->nbr)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
+void		ft_separate_pile(t_pile **pile, t_pile **pile2, int first, int size)
+{
+	int		i;
+
+	i = 0;
+	if (first)
+	{
+		while (i != (size >> 1) + (size & 1) && ++i)
+			ft_pb(pile, pile2, 1);
+	}
+	else
+	{
+		while (i != (size >> 1) && ++i)
+			ft_pa(pile, pile2, 1);
+	}
+}
+
+static void	ft_bloc_a(t_pile **pile, t_pile **pile2, int size)
 {
 	int		i;
 	int		back;
 
 	back = 0;
 	i = 0;
-	// printf("Size %d\n", (size >> 1) + (size & 1));
+	while (i != (size >> 1) && ++i)
+	{
+		if (back && (*pile)->nbr > end_pile(*pile2) && (*pile)->nbr >
+																(*pile2)->nbr)
+			while (back > 0 && (*pile)->nbr > end_pile(*pile2) && back--)
+				ft_rrb(pile2, 1);
+		else
+			while ((*pile)->nbr < (*pile2)->nbr && back != (size >> 1) +
+														(size & 1) && ++back)
+				ft_rb(pile2, 1);
+		ft_pb(pile, pile2, 1);
+	}
+	while (back > 0 && back--)
+		ft_rrb(pile2, 1);
+}
+
+static void	ft_bloc_b(t_pile **pile, t_pile **pile2, int size)
+{
+	int		i;
+	int		back;
+
+	back = 0;
+	i = 0;
+	while (i != (size >> 1) + (size & 1) && ++i)
+	{
+		if (back && (*pile2)->nbr < end_pile(*pile) && (*pile2)->nbr <
+																(*pile)->nbr)
+			while (back >= 0 + (size & 1) && (*pile2)->nbr < end_pile(*pile) &&
+																		back--)
+				ft_rra(pile, 1);
+		else
+			while ((*pile2)->nbr > (*pile)->nbr && back != size / 2 && ++back)
+				ft_ra(pile, 1);
+		ft_pa(pile, pile2, 1);
+	}
+	while (back >= (size & 1) && back--)
+		ft_rra(pile, 1);
+}
+
+void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
+{
 	if (!(*pile2))
 		return ;
 	if (!first)
-	{
-		while (i != (size >> 1) && ++i)
-		{
-			if (back && (*pile)->nbr > end_pile(*pile2) && (*pile)->nbr > (*pile2)->nbr)
-			{
-				while (back > 0 && (*pile)->nbr > end_pile(*pile2) && back--)
-					ft_rrb(pile2, 1);
-				ft_pb(pile, pile2, 1);
-			}
-			else if ((*pile)->nbr < end_pile(*pile2) && (*pile)->nbr > (*pile)->nbr)
-				ft_pb(pile, pile2, 1);
-			else if ((*pile)->nbr > (*pile2)->nbr)
-				ft_pb(pile, pile2, 1);
-			else
-			{
-				// printf("Size %d\n", (size >> 1) + (size & 1));
-				// printf("Back %d\n",back );
-				while ((*pile)->nbr < (*pile2)->nbr && back != (size >> 1) + (size & 1) && ++back)
-					ft_rb(pile2, 1);
-				ft_pb(pile, pile2, 1);
-			}
-		}
-		while (back > 0 && back--)
-			ft_rrb(pile2, 1);
-	}
+		ft_bloc_a(pile, pile2, size);
 	else
-	{
-		while (i != (size >> 1) + (size & 1) && ++i)
-		{
-			if (back && (*pile2)->nbr < end_pile(*pile) && (*pile2)->nbr < (*pile)->nbr)
-			{
-				// printf("Back %d\n",back );
-				while (back >= 0 + (size & 1) && (*pile2)->nbr < end_pile(*pile) && back--)
-					ft_rra(pile, 1);
-				ft_pa(pile, pile2, 1);
-			}
-			else if ((*pile2)->nbr > end_pile(*pile) && (*pile2)->nbr < (*pile)->nbr)
-				ft_pa(pile, pile2, 1);
-			else if ((*pile2)->nbr < (*pile)->nbr)
-				ft_pa(pile, pile2, 1);
-			else
-			{
-				while ((*pile2)->nbr > (*pile)->nbr && back != (size >> 1) && ++back)
-					ft_ra(pile, 1);
-				ft_pa(pile, pile2, 1);
-			}
-		}
-		while (back >= (size & 1) && back--)
-			ft_rra(pile, 1);
-	}
-	// printf("Stop\n");
+		ft_bloc_b(pile, pile2, size);
 }

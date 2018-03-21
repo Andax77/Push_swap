@@ -29,7 +29,6 @@ void		ft_go(t_pile **pile, t_pile **pile2, int a, int argc)
 {
 	if (a == 1)
 		return ;
-	// ft_algo3(pile, pile2, argc);
 	else if (a < 6)
 		ft_algo(pile, pile2, argc - 1);
 	else if (a < 25)

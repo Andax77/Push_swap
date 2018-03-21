@@ -51,8 +51,10 @@ void			ft_algo(t_pile **pile, t_pile **pile2, int argc);
 void			ft_algo2(t_pile **pile, t_pile **pile2, int argc);
 
 void			ft_algo3(t_pile **pile, t_pile **pile2, int argc);
-void			ft_separate_pile(t_pile **pile, t_pile **pile2, int first, int size);
-void			ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first);
+void			ft_separate_pile(t_pile **pile, t_pile **pile2, int first,
+																	int size);
+void			ft_sort_bloc(t_pile **pile, t_pile **pile2, int size,
+																	int first);
 void			merge_sort(t_pile **pile, t_pile **pile2, int first, int size);
 
 int				end_pile(t_pile *pile);

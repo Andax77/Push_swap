@@ -45,11 +45,14 @@ void	ft_algo(t_pile **pile, t_pile **pile2, int argc)
 		if (*pile2 && (*pile2)->next)
 			i += check_pile2(pile2);
 		if (((*pile)->nbr < (*pile)->next->nbr) &&
-		((*pile)->nbr < end_pile(*pile)) && !ft_check_sort(*pile, argc + 1) && ++i)
+		((*pile)->nbr < end_pile(*pile)) && !ft_check_sort(*pile, argc + 1) &&
+																			++i)
 			ft_pb(pile, pile2, 1);
-		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile, argc + 1) && ++i)
+		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile, argc + 1)
+																		&& ++i)
 			ft_sa(pile, 1);
-		while ((*pile)->nbr > end_pile(*pile) && !ft_check_sort(*pile, argc + 1) && ++i)
+		while ((*pile)->nbr > end_pile(*pile) && !ft_check_sort(*pile, argc + 1)
+																		&& ++i)
 			ft_rra(pile, 1);
 		a++;
 	}

@@ -77,7 +77,8 @@ void		ft_algo2(t_pile **pile, t_pile **pile2, int argc)
 		return ;
 	while (argc != 1 && ++a)
 	{
-		if ((*pile)->nbr > (*pile)->next->nbr && !ft_check_sort(*pile, argc + 1))
+		if ((*pile)->nbr > (*pile)->next->nbr &&
+												!ft_check_sort(*pile, argc + 1))
 			ft_sa(pile, 1);
 		if (!ft_check_sort(*pile, argc + 1))
 		{
@@ -88,5 +89,4 @@ void		ft_algo2(t_pile **pile, t_pile **pile2, int argc)
 	}
 	while (*pile2 && ++a)
 		ft_pa(pile, pile2, 1);
-	// printf("Instrucitons %d\n", a);
 }
