@@ -19,7 +19,7 @@ void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
 
 	back = 0;
 	i = 0;
-	printf("Size %d\n", (size >> 1) + (size & 1));
+	// printf("Size %d\n", (size >> 1) + (size & 1));
 	if (!(*pile2))
 		return ;
 	if (!first)
@@ -28,7 +28,7 @@ void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
 		{
 			if (back && (*pile)->nbr > end_pile(*pile2) && (*pile)->nbr > (*pile2)->nbr)
 			{
-				while (back > 0 && back--)
+				while (back > 0 && (*pile)->nbr > end_pile(*pile2) && back--)
 					ft_rrb(pile2, 1);
 				ft_pb(pile, pile2, 1);
 			}
@@ -38,8 +38,9 @@ void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
 				ft_pb(pile, pile2, 1);
 			else
 			{
-				printf("Back %d\n",back );
-				while ((*pile)->nbr < (*pile2)->nbr && back != (size >> 1) && ++back)
+				// printf("Size %d\n", (size >> 1) + (size & 1));
+				// printf("Back %d\n",back );
+				while ((*pile)->nbr < (*pile2)->nbr && back != (size >> 1) + (size & 1) && ++back)
 					ft_rb(pile2, 1);
 				ft_pb(pile, pile2, 1);
 			}
@@ -53,25 +54,24 @@ void		ft_sort_bloc(t_pile **pile, t_pile **pile2, int size, int first)
 		{
 			if (back && (*pile2)->nbr < end_pile(*pile) && (*pile2)->nbr < (*pile)->nbr)
 			{
-				while (back > 0 && back--)
+				// printf("Back %d\n",back );
+				while (back >= 0 + (size & 1) && (*pile2)->nbr < end_pile(*pile) && back--)
 					ft_rra(pile, 1);
 				ft_pa(pile, pile2, 1);
-				printf("Back %d\n",back);
 			}
 			else if ((*pile2)->nbr > end_pile(*pile) && (*pile2)->nbr < (*pile)->nbr)
 				ft_pa(pile, pile2, 1);
 			else if ((*pile2)->nbr < (*pile)->nbr)
-				ft_pa(pile, pile2, 1) && printf("COUCOU\n" );
+				ft_pa(pile, pile2, 1);
 			else
 			{
-				while ((*pile2)->nbr > (*pile)->nbr && back != size >> 1 && ++back)
+				while ((*pile2)->nbr > (*pile)->nbr && back != (size >> 1) && ++back)
 					ft_ra(pile, 1);
 				ft_pa(pile, pile2, 1);
 			}
-			ft_affichage(*pile);
 		}
-		while (back > 0 && back--)
+		while (back >= (size & 1) && back--)
 			ft_rra(pile, 1);
 	}
-	printf("Stop\n");
+	// printf("Stop\n");
 }
