@@ -36,6 +36,8 @@ static void		ft_cmd_pile(t_pile **pile, t_pile **pile2, char *arg)
 		ft_rrb(pile2, 0);
 	else if (ft_strcmp(arg, "rrr") == 0)
 		ft_rrr(pile, pile2, 0);
+	else
+		ft_error("Error\n");
 }
 
 static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
@@ -57,11 +59,12 @@ static void		ft_read_cmd(t_pile **pile, t_pile **pile2)
 
 void			ft_end(t_pile *pile, t_pile *pile2, int size)
 {
-	if (ft_check_sort(pile, size))
+	if (pile && ft_check_sort(pile, size) && !pile2)
 		ft_putstr("OK\n");
 	else
 		ft_putstr("KO\n");
-	ft_clear(pile);
+	if (pile)
+		ft_clear(pile);
 	if (pile2)
 		ft_clear(pile2);
 }

@@ -42,6 +42,8 @@ int			ft_check_sort(t_pile *pile, int size)
 	t_pile	*tmp;
 
 	tmp = pile;
+	if (!tmp->next)
+		return (1);
 	while (tmp->next && --size)
 	{
 		if (tmp->nbr > tmp->next->nbr)

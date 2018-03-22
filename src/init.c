@@ -42,7 +42,7 @@ void	check_pile(char **str, int a)
 		if (!(nbr = 0) && str[a][i] == '-' && ++i)
 			check = 1;
 		!ft_isdigit(str[a][i]) ? ft_error("Error\n") : 1;
-		while (str[a][i])
+		while (str[a][i] && nbr <= 2147483647 && nbr >= -2147483648)
 		{
 			if (!ft_isdigit(str[a][i]) || (str[a][i] == '-' && check == 1))
 				ft_error("Error\n");
